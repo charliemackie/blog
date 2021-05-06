@@ -1,0 +1,101 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block main_content %}
+
+<div class="row">
+    <div class="wrap">
+        <div class="col-1">
+        </div>  
+        <div class="box">
+            
+            <div class="col-11">
+                <div class="title d-flex justify-content-center">
+                    <img class="cover-img" src="{% static 'posts/images/face.jpeg' %}">
+                </div>
+                <div class="title d-flex justify-content-center">
+                    Charlie's Blog
+                </div>
+                <div class="d-flex justify-content-center pl-3">
+                    Hey my name's Charlie! I like to write about things related to Data, Engineering, and Business. 
+                    If you have any questions or concerns, i'm always happy to chat. You can reach me at mackiecharlie@hotmail.com 
+                </div>
+
+                <div class="container pt-4">
+
+                    <div class="banner row alert alert-primary col-12 d-flex align-items-center" role="alert"> 
+                        Stories
+                        <div class="btn-group justify-content-end ml-auto">
+                            <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                Filter by
+                            </button>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'filter' category='Engineering' %}">Engineering</a></li>
+                            <li><a class="dropdown-item" href="{% url 'filter' category='Data' %}">Data</a></li>
+                            <li><a class="dropdown-item" href="{% url 'filter' category='Business' %}">Business</a></li>
+                            <li><a class="dropdown-item" href="{% url 'filter' category='All' %}">All</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="container pt-3">
+                        {% for story in stories %}
+                        <a href="{% url story.name %}" style="color: black;">
+                            <div class="row">
+                                <div class="col-9"> 
+                                    {{ story.name }}
+                                    <!-- Badge Styling -->
+                                    {% if story.category == "Data" %}
+                                        <span class="data-badge badge rounded-pill ml-2">Data</span>
+                                    {% elif story.category == "Engineering" %}
+                                        <span class="engineering-badge badge rounded-pill ml-2">Engineering</span>
+                                    {% else %}
+                                        <span class="business-badge badge rounded-pill ml-2">Business</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-3 date"> 
+                                    {{ story.time_posted }}
+                                </div>
+                            </div>
+                            <div class="pt-3">
+                                {{ story.content }}
+                            </div>
+                            <hr>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="box-small">
+            <div class="col-12">
+                <div class="title-small d-flex justify-content-center">
+                    Stuff I like
+                </div>
+                <div class="d-flex justify-content-center pt-3"> 
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6791126994563149824" height="423" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+                </div>
+                <div class="d-flex justify-content-center pt-3"> 
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6787410313235992576" height="442" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+                </div>
+                <div class="d-flex justify-content-center pt-3"> 
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6786364936441344000" height="509" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+                </div>
+                <div class="d-flex justify-content-center pt-3"> 
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6786017780614352896" height="547" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var activity = '{{ activity }}';
+    </script>
+    <script src="{% static 'posts/js/home.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block scripts %}
+    <script src="{% static 'posts/js/post.js' %}"></script>
+{% endblock %}
+{% block main_content %}
+
+{% for story in stories %}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 pt-4">
+        <div class="title-story">
+            {{ story.name }}
+        </div>
+        
+        <div class="pt-4">
+            <div style="color: rgb(128, 128, 128);">
+                {{story.time_posted}} • {{story.category}} • Charlie Mackie
+            </div>
+        </div>
+
+        <div class="pt-4">
+        <!-- Subheadings -->
+            <h5></h5>
+        <!-- Text -->
+            <div class="pt-3">
+            </div>
+        <!-- Images -->
+            <img class="story-img" src="...">
+        <!-- Code embeddings -->
+            <pre ><code class="language-python">
+            </code></pre>
+        </div>
+        
+        <div class="thanks-text d-flex justify-content-center pt-4">
+            Thanks for reading!
+        </div>
+        <div class="row p-4">
+            <a href="{% url 'home' %}">
+                <button type="button" class="btn btn-danger">Home</button>
+            </a>
+            <form class='like-button pl-2' action="{% url 'story_like' story_name=story.name story_id=story.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">
+                    Like
+                    <span style="margin-left: 8px; color: rgb(126, 124, 124);" class="badge rounded-pill bg-light">{{ story.likes }}</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+{% endfor %}
+
+{% endblock %}
