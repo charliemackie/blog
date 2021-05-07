@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from posts.views import home, filter_category, story_like, The_Data_Supply_Chain
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +25,4 @@ urlpatterns = [
     path('The_Data_Supply_Chain', The_Data_Supply_Chain, name='The Data Supply Chain'),
     path(r'<story_name>/liked/(<story_id>[0-9]+)/', story_like, name='story_like'),
     path('<category>/', filter_category, name='filter') 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
