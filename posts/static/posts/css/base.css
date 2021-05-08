@@ -15,17 +15,36 @@ html, body {
     overflow: scroll;
 }
 
-.box-small{
+.smallbox{
     height: 200vh;
     width: 29vw;
     background: linear-gradient(to bottom, #e0eafc, #cfdef3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     overflow: scroll;
 }
 
+@media only screen and (max-device-width : 480px) {
+    /* Styles */
+    .smallbox{
+        height: 1vh;
+        width: 1vw;
+        background: linear-gradient(to bottom, #e0eafc, #cfdef3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        overflow: scroll;
+    }
+
+    .box{
+        height: 200vh;
+        width: 100vw;
+        background-color: rgb(250, 245, 238);
+        overflow: scroll;
+    }
+
+}
+
 .title { 
     font-family: 'Racing Sans One', cursive;
-    font-size: 55pt;
+    font-size: 30pt;
     margin-left: 20px;
+    padding-top: 20px;
 }
 
 .title-small {
@@ -42,8 +61,9 @@ html, body {
 }
 
 .cover-img {
-    width: 40%;
+    width: 30%;
     margin-top: 100px;
+    clip-path: circle(120px at center);
 }
 
 .story-img {

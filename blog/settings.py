@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import whitenoise
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = '@#y@-k788zhe)nkjt)_vlhghdiayy6q#cfkt05cq=_lj)o%^gu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['charliemackieblog.herokuapp.com']
+ALLOWED_HOSTS = ['charliemackieblog.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -122,7 +123,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+ 
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, '/posts/static')
@@ -130,11 +131,13 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, '/posts/static')
 # static files located in the posts app
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, '/posts/static'),
+    os.path.join(PROJECT_ROOT, 'staticfiles'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
  
+# https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dtsee04d4
+
 """import dj_database_url 
 
 prod_db = dj_database_url.config(conn_max_age=500)
