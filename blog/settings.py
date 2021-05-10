@@ -90,15 +90,7 @@ DATABASES = {
     }
 }
 
-import os
-import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -138,13 +130,7 @@ USE_TZ = True
  
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, '/posts/static')
-
-# static files located in the posts app
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'staticfiles'),
-)
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "posts")
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
  
